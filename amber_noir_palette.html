@@ -1,0 +1,184 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{padding:1.2rem 0;font-family:'JetBrains Mono',monospace;display:flex;flex-direction:column;gap:0}
+
+.title-row{padding:.8rem 1.2rem;background:#09080500;display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid #2a2010}
+.title-main{font-size:.95rem;font-weight:700;color:#d9a84e;letter-spacing:.06em}
+.title-sub{font-size:.62rem;color:#6a5c40;letter-spacing:.08em;text-transform:uppercase}
+
+.section-label{padding:.5rem 1.2rem;font-size:.58rem;color:#5a4e34;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid #1e1a10}
+
+.swatches{display:grid;grid-template-columns:repeat(8,1fr)}
+.swatch{
+  height:72px;display:flex;flex-direction:column;
+  justify-content:flex-end;padding:6px 7px;
+  position:relative;cursor:default;
+}
+.swatch:hover .s-info{opacity:1}
+.s-name{font-size:.52rem;letter-spacing:.04em;line-height:1.4;font-weight:500}
+.s-hex{font-size:.5rem;opacity:.6;margin-top:1px}
+.s-info{opacity:.85;transition:opacity .2s}
+
+.reason-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:0;border-top:1px solid #2a2010;
+}
+.reason-cell{
+  padding:.9rem 1.2rem;
+  border-right:1px solid #2a2010;
+  border-bottom:1px solid #2a2010;
+}
+.reason-cell:nth-child(2n){border-right:none}
+.reason-cell:nth-last-child(-n+2){border-bottom:none}
+.r-swatch{width:28px;height:6px;border-radius:2px;margin-bottom:.5rem}
+.r-var{font-size:.65rem;color:#d9a84e;margin-bottom:.25rem;font-weight:600}
+.r-val{font-size:.58rem;color:#8a7850;margin-bottom:.4rem;letter-spacing:.04em}
+.r-why{font-size:.6rem;color:#6a5c40;line-height:1.6}
+
+.copy-block{
+  background:#09080400;
+  border-top:1px solid #2a2010;
+  padding:1rem 1.2rem;
+}
+.copy-label{font-size:.58rem;color:#5a4e34;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.6rem}
+.code{font-size:.65rem;color:#c8aa72;line-height:2;white-space:pre}
+.code .var{color:#7ab0c8}
+.code .val{color:#d9a84e}
+.code .dim{color:#4a3e28}
+</style>
+
+<div class="wrap" style="background:#050402;border:1px solid #2a2010;border-radius:4px;overflow:hidden">
+
+  <div class="title-row">
+    <div class="title-main">Amber Noir</div>
+    <div class="title-sub">Warm precision · Human technology · Alexandria light</div>
+  </div>
+
+  <div class="section-label">— backgrounds · the void layer</div>
+  <div class="swatches">
+    <div class="swatch" style="background:#000000">
+      <div class="s-info"><div class="s-name" style="color:#2a2010">--black</div><div class="s-hex" style="color:#2a2010">#000000</div></div>
+    </div>
+    <div class="swatch" style="background:#080704">
+      <div class="s-info"><div class="s-name" style="color:#3a3020">--off-black</div><div class="s-hex" style="color:#2a2010">#080704</div></div>
+    </div>
+    <div class="swatch" style="background:#0f0d08">
+      <div class="s-info"><div class="s-name" style="color:#4a3e28">--deep</div><div class="s-hex" style="color:#3a3020">#0f0d08</div></div>
+    </div>
+    <div class="swatch" style="background:#161208">
+      <div class="s-info"><div class="s-name" style="color:#5a4e34">--panel</div><div class="s-hex" style="color:#4a3e28">#161208</div></div>
+    </div>
+    <div class="swatch" style="background:#252010">
+      <div class="s-info"><div class="s-name" style="color:#6a5c3a">--border</div><div class="s-hex" style="color:#5a4e30">#252010</div></div>
+    </div>
+    <div class="swatch" style="background:#3e3520">
+      <div class="s-info"><div class="s-name" style="color:#8a7850">--muted</div><div class="s-hex" style="color:#6a5c3a">#3e3520</div></div>
+    </div>
+    <div class="swatch" style="background:#6a5c3a">
+      <div class="s-info"><div class="s-name" style="color:#c8aa72">--subtle</div><div class="s-hex" style="color:#9a8858">#6a5c3a</div></div>
+    </div>
+    <div class="swatch" style="background:#a89060">
+      <div class="s-info"><div class="s-name" style="color:#1a1408">--text</div><div class="s-hex" style="color:#5a4a28">#a89060</div></div>
+    </div>
+  </div>
+
+  <div class="section-label">— accents · the light layer</div>
+  <div class="swatches">
+    <div class="swatch" style="background:#d9a84e">
+      <div class="s-info"><div class="s-name" style="color:#1a0e00">--accent</div><div class="s-hex" style="color:#5a3800">#d9a84e</div></div>
+    </div>
+    <div class="swatch" style="background:#f0c878">
+      <div class="s-info"><div class="s-name" style="color:#1a0e00">--bright</div><div class="s-hex" style="color:#5a3c00">#f0c878</div></div>
+    </div>
+    <div class="swatch" style="background:#f8e8c0">
+      <div class="s-info"><div class="s-name" style="color:#1a1208">--white</div><div class="s-hex" style="color:#4a3818">#f8e8c0</div></div>
+    </div>
+    <div class="swatch" style="background:#6ab4d0">
+      <div class="s-info"><div class="s-name" style="color:#020e18">--accent2</div><div class="s-hex" style="color:#0a3050">#6ab4d0</div></div>
+    </div>
+    <div class="swatch" style="background:#38c87a">
+      <div class="s-info"><div class="s-name" style="color:#001a0a">--green</div><div class="s-hex" style="color:#005020">#38c87a</div></div>
+    </div>
+    <div class="swatch" style="background:#9888d8">
+      <div class="s-info"><div class="s-name" style="color:#080414">--indigo</div><div class="s-hex" style="color:#281860">#9888d8</div></div>
+    </div>
+    <div class="swatch" style="background:#d06090">
+      <div class="s-info"><div class="s-name" style="color:#1a0010">--rose</div><div class="s-hex" style="color:#500028">#d06090</div></div>
+    </div>
+    <div class="swatch" style="background:#e87840">
+      <div class="s-info"><div class="s-name" style="color:#1a0500">--accent-hot</div><div class="s-hex" style="color:#602000">#e87840</div></div>
+    </div>
+  </div>
+
+  <div class="reason-grid">
+    <div class="reason-cell">
+      <div class="r-swatch" style="background:#000000;border:1px solid #2a2010"></div>
+      <div class="r-var">--black → --panel</div>
+      <div class="r-val">#000000 → #161208</div>
+      <div class="r-why">Pure black to warm-tinted near-black. Every surface has a whisper of amber baked in — the site never feels cold or sterile.</div>
+    </div>
+    <div class="reason-cell">
+      <div class="r-swatch" style="background:#d9a84e"></div>
+      <div class="r-var">--accent</div>
+      <div class="r-val">#d9a84e</div>
+      <div class="r-why">Deeper, richer gold than before. Less pale, more intentional. Reads like ancient manuscript ink — authoritative and warm.</div>
+    </div>
+    <div class="reason-cell">
+      <div class="r-swatch" style="background:#a89060"></div>
+      <div class="r-var">--text</div>
+      <div class="r-val">#a89060</div>
+      <div class="r-why">Body text is now warm stone — not cold gray. Harmonizes with accent instead of sitting at a different temperature entirely.</div>
+    </div>
+    <div class="reason-cell">
+      <div class="r-swatch" style="background:#6ab4d0"></div>
+      <div class="r-var">--accent2</div>
+      <div class="r-val">#6ab4d0</div>
+      <div class="r-why">Cool mediterranean blue — the contrast to gold. Inspired by Alexandria's sea light. Creates visual tension without clashing.</div>
+    </div>
+    <div class="reason-cell">
+      <div class="r-swatch" style="background:#9888d8"></div>
+      <div class="r-var">--indigo</div>
+      <div class="r-val">#9888d8</div>
+      <div class="r-why">Dusty lavender instead of electric violet. Warm enough to coexist with gold, still distinct for tags and UI accents.</div>
+    </div>
+    <div class="reason-cell">
+      <div class="r-swatch" style="background:#d06090"></div>
+      <div class="r-var">--rose</div>
+      <div class="r-val">#d06090</div>
+      <div class="r-why">Warm rose-mauve, not a cold magenta. Stays in the warm family, used sparingly for problem statements and tags.</div>
+    </div>
+    <div class="reason-cell">
+      <div class="r-swatch" style="background:#38c87a"></div>
+      <div class="r-var">--green</div>
+      <div class="r-val">#38c87a</div>
+      <div class="r-why">Typing cursor and open-to-work badge. Slightly warmer green than before — closer to jade than lime.</div>
+    </div>
+    <div class="reason-cell">
+      <div class="r-swatch" style="background:#6a5c3a"></div>
+      <div class="r-var">--subtle</div>
+      <div class="r-val">#6a5c3a</div>
+      <div class="r-why">Previously #666 pure gray. Now warm brown-gold — nav links, skill names, secondary text all feel part of the same system.</div>
+    </div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-label">— paste into your :root {}</div>
+    <div class="code"><span class="dim">--black:</span>    <span class="val">#000000</span><span class="dim">;</span>
+<span class="dim">--off-black:</span><span class="val">#080704</span><span class="dim">;</span>
+<span class="dim">--deep:</span>     <span class="val">#0f0d08</span><span class="dim">;</span>
+<span class="dim">--panel:</span>    <span class="val">#161208</span><span class="dim">;</span>
+<span class="dim">--border:</span>   <span class="val">#252010</span><span class="dim">;</span>
+<span class="dim">--muted:</span>    <span class="val">#3e3520</span><span class="dim">;</span>
+<span class="dim">--subtle:</span>   <span class="val">#6a5c3a</span><span class="dim">;</span>
+<span class="dim">--text:</span>     <span class="val">#a89060</span><span class="dim">;</span>
+<span class="dim">--bright:</span>   <span class="val">#f0c878</span><span class="dim">;</span>
+<span class="dim">--white:</span>    <span class="val">#f8e8c0</span><span class="dim">;</span>
+<span class="dim">--accent:</span>   <span class="val">#d9a84e</span><span class="dim">;</span>
+<span class="dim">--accent2:</span>  <span class="val">#6ab4d0</span><span class="dim">;</span>
+<span class="dim">--green:</span>    <span class="val">#38c87a</span><span class="dim">;</span>
+<span class="dim">--indigo:</span>   <span class="val">#9888d8</span><span class="dim">;</span>
+<span class="dim">--rose:</span>     <span class="val">#d06090</span><span class="dim">;</span></div>
+  </div>
+
+</div>
