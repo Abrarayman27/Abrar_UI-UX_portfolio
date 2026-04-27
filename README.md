@@ -74,19 +74,6 @@ This portfolio is designed to:
 
 ---
 
-## ⚡ Deployment
-
-This project is deployed using **GitHub Pages**.
-
-To deploy:
-
-1. Push your code to GitHub
-2. Go to **Settings → Pages**
-3. Select branch: `main`
-4. Save and get your live link
-
----
-
 ## 🖤 Credits
 
 Designed & Developed by **Abrar Ayman**
