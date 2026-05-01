@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SoulSupport — UX Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1614;
+    --ink-soft: #4a4542;
+    --ink-muted: #8c8885;
+    --cream: #f9f6f1;
+    --cream-deep: #f0ebe2;
+    --teal-50: #e8f5f0;
+    --teal-100: #b3dfd0;
+    --teal-400: #97CADB;
+    --teal-600: #01709A;
+    --teal-800: #2f6d99;
+    --sage-100: #dde8e0;
+    --sage-400: #97CADB;
+    --sky-100: #d4eaf7;
+    --sky-400: #9CB8C1;
+    --rose-100: #f5dde0;
+    --rose-400: #f5dde0;
+    --amber-100: #f5e8cc;
+    --amber-400: #d4914a;
+    --section-pad: 5rem 2rem;
+    --max: 860px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+
+  background-color: var(--teal-600);
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(197, 80%, 40%, 1) 0, transparent 50%), 
+    radial-gradient(at 100% 100%, var(--sage-400) 0, transparent 50%);
+
+    color: var(--cream);
+    padding: 6rem 2rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -80px;
+    width: 520px; height: 520px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -160px; left: -100px;
+    width: 440px; height: 440px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .hero-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal-100);
+    border: 1px solid rgba(179,223,208,0.4);
+    border-radius: 100px;
+    padding: 5px 14px;
+    margin-bottom: 2rem;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.6rem, 6vw, 4.4rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    max-width: 700px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--teal-100);
+  }
+  .hero-lead {
+    font-size: 1.15rem;
+    color: rgba(249,246,241,0.75);
+    max-width: 560px;
+    line-height: 1.65;
+    margin-bottom: 3rem;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  .hero-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .hero-meta-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(249,246,241,0.45);
+  }
+  .hero-meta-value {
+    font-size: 14px;
+    color: rgba(249,246,241,0.85);
+    font-weight: 400;
+  }
+
+  /* ── NAV STRIP ── */
+  .nav-strip {
+    background: var(--teal-600);
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+  }
+  .nav-strip-inner {
+    max-width: var(--max);
+    width: 100%;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+  .nav-strip a {
+    display: block;
+    padding: 1rem 1.25rem;
+    font-size: 13px;
+    color: rgba(249,246,241,0.6);
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .nav-strip a:hover {
+    color: rgba(249,246,241,1);
+    border-bottom-color: var(--teal-100);
+  }
+
+  /* ── SECTION WRAPPER ── */
+  section {
+    padding: var(--section-pad);
+  }
+  section:nth-child(even) {
+    background: var(--cream-deep);
+  }
+  .inner {
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-number {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal-600);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+  }
+  .section-number::after {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--teal-400);
+    opacity: 0.5;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+    color: var(--ink);
+  }
+
+  h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+    color: var(--ink);
+  }
+
+  p {
+    color: var(--ink-soft);
+    margin-bottom: 1.1rem;
+    line-height: 1.75;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  /* ── LEAD PARAGRAPH ── */
+  .lead {
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    margin-bottom: 2.5rem;
+    max-width: 660px;
+    line-height: 1.72;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    height: 1px;
+    background: rgba(0,0,0,0.08);
+    margin: 2.5rem 0;
+  }
+
+  /* ── CARDS GRID ── */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin: 2.5rem 0;
+  }
+
+  .card {
+    background: var(--cream);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 16px;
+    padding: 1.75rem;
+  }
+
+  .card-accent {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 17px;
+  }
+
+  .card h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+
+  .card p {
+    font-size: 14px;
+    line-height: 1.65;
+    margin-bottom: 0;
+  }
+
+  /* ── STAT BLOCKS ── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 2.5rem 0;
+  }
+  .stat {
+    background: var(--cream);
+    padding: 1.5rem 1.75rem;
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.4rem;
+    line-height: 1;
+    color: var(--teal-600);
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+
+  /* ── PERSONA CARDS ── */
+  .personas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2.5rem 0;
+  }
+
+  .persona-card {
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .persona-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .persona-card h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 3px;
+  }
+
+  .persona-role {
+    font-size: 13px;
+    color: var(--ink-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .persona-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .persona-list li {
+    font-size: 14px;
+    color: var(--ink-soft);
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.55;
+  }
+
+  .persona-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
+
+  .persona-teal { background: var(--teal-50); }
+  .persona-teal .persona-avatar { background: var(--teal-100); color: var(--teal-800); }
+  .persona-teal .persona-list li::before { background: var(--teal-400); }
+
+  .persona-sky { background: var(--sky-100); }
+  .persona-sky .persona-avatar { background: #a8d4ef; color: #0d4575; }
+  .persona-sky .persona-list li::before { background: var(--sky-400); }
+
+  /* ── JOURNEY MAP ── */
+  .journey {
+    margin: 2.5rem 0;
+    overflow-x: auto;
+  }
+
+  .journey-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    min-width: 640px;
+  }
+
+  .journey-table th {
+    background: var(--teal-800);
+    color: var(--cream);
+    padding: 12px 14px;
+    font-weight: 500;
+    text-align: left;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+
+  .journey-table th:first-child { border-radius: 10px 0 0 0; }
+  .journey-table th:last-child { border-radius: 0 10px 0 0; }
+
+  .journey-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    vertical-align: top;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  .journey-table tr:last-child td { border-bottom: none; }
+  .journey-table tr:nth-child(even) td { background: rgba(0,0,0,0.02); }
+
+  .stage-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.04em;
+  }
+
+  .badge-red { background: var(--rose-100); color: #7a2030; }
+  .badge-amber { background: var(--amber-100); color: #6e4410; }
+  .badge-sage { background: var(--sage-100); color: #2d5c3a; }
+  .badge-teal { background: var(--teal-50); color: var(--teal-800); }
+
+  /* ── FLOW DIAGRAM ── */
+  .flow-wrap {
+    background: var(--teal-800);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    margin: 2.5rem 0;
+  }
+
+  .flow-title {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(249,246,241,0.5);
+    margin-bottom: 1.5rem;
+  }
+
+  .flow-cols {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .flow-col-divider {
+    background: rgba(255,255,255,0.12);
+    align-self: stretch;
+  }
+
+  .flow-col-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    color: var(--teal-100);
+    margin-bottom: 1.25rem;
+    font-style: italic;
+  }
+
+  .flow-step {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: rgba(249,246,241,0.8);
+    margin-bottom: 8px;
+    position: relative;
+  }
+
+  .flow-step::after {
+    content: '↓';
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    color: rgba(249,246,241,0.25);
+  }
+
+  .flow-step:last-child::after { display: none; }
+
+  .flow-step-end {
+    background: var(--teal-600);
+    border-color: var(--teal-400);
+  }
+
+  /* ── COLOR PALETTE ── */
+  .palette {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+  }
+
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    min-width: 80px;
+  }
+
+  .swatch-color {
+    height: 72px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.07);
+  }
+
+  .swatch-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .swatch-hex {
+    font-size: 11px;
+    color: var(--ink-muted);
+    font-family: monospace;
+  }
+
+  /* ── TYPOGRAPHY SPEC ── */
+  .typo-spec {
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 2rem 0;
+  }
+
+  .typo-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 120px;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    align-items: center;
+  }
+
+  .typo-row:last-child { border-bottom: none; }
+  .typo-row:nth-child(even) { background: rgba(0,0,0,0.02); }
+
+  .typo-role {
+    font-size: 12px;
+    color: var(--ink-muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .typo-spec-text {
+    font-size: 12px;
+    color: var(--ink-muted);
+    font-family: monospace;
+  }
+
+  /* ── SCREEN MOCKUP ── */
+  .screens-row {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 1rem 0 1.5rem;
+    margin: 2rem 0;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .phone-frame {
+    flex-shrink: 0;
+    width: 200px;
+    background: var(--teal-800);
+    border-radius: 28px;
+    padding: 3px;
+    box-shadow: 0 20px 60px rgba(13,74,57,0.25);
+  }
+
+  .phone-screen {
+    background: var(--cream);
+    border-radius: 26px;
+    overflow: hidden;
+    height: 360px;
+    position: relative;
+  }
+
+  .phone-statusbar {
+    height: 28px;
+    background: var(--teal-800);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .phone-notch {
+    width: 60px;
+    height: 14px;
+    background: var(--ink);
+    border-radius: 100px;
+  }
+
+  .phone-content {
+    padding: 14px;
+    height: calc(100% - 28px);
+    overflow: hidden;
+  }
+
+  .screen-label {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+
+  /* Screen: Home */
+  .s-home .phone-content { background: var(--cream); }
+  .s-home-greeting { font-size: 12px; color: var(--ink-muted); margin-bottom: 2px; }
+  .s-home-name { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--ink); margin-bottom: 14px; }
+  .s-chatbot-btn {
+    background: var(--teal-800); color: var(--cream); border-radius: 10px;
+    padding: 9px 12px; font-size: 11px; font-weight: 500; margin-bottom: 12px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .s-chatbot-dot { width: 6px; height: 6px; background: var(--teal-100); border-radius: 50%; }
+
+  .s-feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; }
+  .s-feature-tile {
+    background: var(--teal-50);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--teal-800);
+    min-height: 60px;
+  }
+
+  .s-test-widget {
+    background: var(--sage-100);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 10px;
+    color: #2d5c3a;
+  }
+
+  /* Screen: Mood Tracker */
+  .s-mood .phone-content { display: flex; flex-direction: column; align-items: center; padding-top: 20px; }
+  .s-mood-q { font-family: 'DM Serif Display', serif; font-size: 14px; color: var(--ink); text-align: center; margin-bottom: 6px; }
+  .s-mood-sub { font-size: 10px; color: var(--ink-muted); text-align: center; margin-bottom: 20px; }
+  .s-mood-emoji {
+    width: 80px; height: 80px;
+    background: var(--amber-100);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px; margin-bottom: 16px;
+  }
+  .s-mood-input {
+    width: 100%; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px;
+    padding: 8px; font-size: 10px; color: var(--ink-muted);
+    background: var(--cream-deep); margin-bottom: 12px;
+  }
+  .s-mood-save {
+    background: var(--teal-600); color: var(--cream);
+    border-radius: 8px; padding: 9px 32px; font-size: 11px; font-weight: 500;
+  }
+
+  /* Screen: Therapist Profile */
+  .s-therapist .phone-content { padding: 0; overflow: visible; }
+  .s-th-header {
+    background: var(--teal-800);
+    height: 110px;
+    display: flex;
+    align-items: flex-end;
+    padding: 12px;
+    position: relative;
+  }
+  .s-th-avatar {
+    width: 50px; height: 50px; border-radius: 50%;
+    background: var(--teal-100);
+    border: 2px solid var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif; color: var(--teal-800); font-size: 18px;
+    position: relative; bottom: -16px; left: 0;
+  }
+  .s-th-body { padding: 24px 12px 12px; }
+  .s-th-name { font-weight: 500; font-size: 13px; color: var(--ink); margin-bottom: 2px; }
+  .s-th-role { font-size: 10px; color: var(--ink-muted); margin-bottom: 12px; }
+  .s-slots { display: flex; gap: 5px; flex-wrap: wrap; }
+  .s-slot {
+    background: var(--teal-50); color: var(--teal-800);
+    border-radius: 6px; padding: 4px 8px; font-size: 9px; font-weight: 500;
+  }
+  .s-slot-active { background: var(--teal-600); color: var(--cream); }
+  .s-book-btn {
+    background: var(--teal-600); color: var(--cream);
+    border-radius: 8px; padding: 9px; font-size: 11px; font-weight: 500;
+    text-align: center; margin-top: 10px;
+  }
+
+  /* Screen: Chatbot */
+  .s-chatbot .phone-content { display: flex; flex-direction: column; gap: 8px; padding-top: 12px; }
+  .s-chat-bubble {
+    max-width: 85%; padding: 9px 11px; border-radius: 12px; font-size: 10px; line-height: 1.5;
+  }
+  .s-chat-bot { background: var(--teal-50); color: var(--ink-soft); align-self: flex-start; border-radius: 4px 12px 12px 12px; }
+  .s-chat-user { background: var(--teal-600); color: var(--cream); align-self: flex-end; border-radius: 12px 12px 4px 12px; }
+  .s-chat-input-row {
+    display: flex; gap: 5px; align-items: center; margin-top: auto;
+    background: var(--cream-deep); border-radius: 10px; padding: 6px 8px;
+  }
+  .s-chat-input-bar { flex: 1; font-size: 9px; color: var(--ink-muted); }
+  .s-chat-send { width: 22px; height: 22px; background: var(--teal-600); border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+
+  /* ── FINDINGS GRID ── */
+  .findings {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .finding {
+    border-radius: 14px;
+    padding: 1.5rem;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .finding-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .finding h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .finding p {
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  .finding-issue { background: var(--rose-100); }
+  .finding-issue h3 { color: #7a2030; }
+
+  .finding-insight { background: var(--amber-100); }
+  .finding-insight h3 { color: #6e4410; }
+
+  .finding-fix { background: var(--teal-50); }
+  .finding-fix h3 { color: var(--teal-800); }
+
+  /* ── ITERATIONS ── */
+  .iteration-row {
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr;
+    gap: 1rem;
+    align-items: center;
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: var(--cream);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 16px;
+  }
+
+  .iter-box {
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  .iter-before {
+    background: var(--rose-100);
+    border: 1px solid rgba(216,110,120,0.2);
+  }
+
+  .iter-after {
+    background: var(--teal-50);
+    border: 1px solid rgba(42,171,133,0.2);
+  }
+
+  .iter-before h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #7a2030; margin-bottom: 6px; }
+  .iter-after h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--teal-800); margin-bottom: 6px; }
+
+  .iter-arrow {
+    text-align: center;
+    font-size: 1.25rem;
+    color: var(--ink-muted);
+  }
+
+  /* ── FEATURE HIGHLIGHT ── */
+  .features-final {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin: 2.5rem 0;
+  }
+
+  .feature-final-card {
+    background: var(--teal-800);
+    color: var(--cream);
+    border-radius: 18px;
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-final-card::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -30px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .feature-final-card h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 0.6rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .feature-final-card p {
+    font-size: 13px;
+    color: rgba(249,246,241,0.65);
+    line-height: 1.65;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .feature-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: rgba(179,223,208,0.3);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ── IMPACT METRICS ── */
+  .impact-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.25rem;
+    margin: 2.5rem 0;
+  }
+
+  .impact-card {
+    background: var(--cream);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 16px;
+    padding: 1.75rem;
+    text-align: center;
+  }
+
+  .impact-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3rem;
+    color: var(--teal-600);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .impact-desc {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+
+  /* ── REFLECTION BOX ── */
+  .reflection {
+    background: var(--teal-800);
+    border-radius: 20px;
+    padding: 3rem;
+    margin: 3rem 0;
+    color: var(--cream);
+  }
+
+  .reflection h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--teal-100);
+    margin-bottom: 1rem;
+  }
+
+  .reflection p {
+    color: rgba(249,246,241,0.7);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .reflection p strong {
+    color: rgba(249,246,241,0.95);
+    font-weight: 500;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--ink);
+    color: rgba(249,246,241,0.5);
+    text-align: center;
+    padding: 3rem 2rem;
+    font-size: 13px;
+  }
+
+  .footer strong {
+    color: rgba(249,246,241,0.85);
+  }
+
+  /* ── QUOTE ── */
+  blockquote {
+    border-left: 3px solid var(--teal-400);
+    margin: 2rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--teal-50);
+    border-radius: 0 12px 12px 0;
+  }
+
+  blockquote p {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--teal-800);
+    margin-bottom: 0.5rem;
+  }
+
+  blockquote cite {
+    font-size: 12px;
+    color: var(--teal-600);
+    font-style: normal;
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin: 1.5rem 0;
+  }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  .check-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--teal-50);
+    border: 1.5px solid var(--teal-400);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  .check-icon::after {
+    content: '';
+    width: 8px;
+    height: 5px;
+    border-left: 1.5px solid var(--teal-600);
+    border-bottom: 1.5px solid var(--teal-600);
+    transform: rotate(-45deg) translateY(-1px);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .flow-cols { grid-template-columns: 1fr; }
+    .flow-col-divider { height: 1px; width: 100%; }
+    .iteration-row { grid-template-columns: 1fr; }
+    .iter-arrow { transform: rotate(90deg); }
+    .typo-row { grid-template-columns: 1fr; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <span class="hero-tag">UX Case Study · 2024–2025</span>
+    <h1>Designing a <em>digital sanctuary</em> for mental well-being</h1>
+    <p class="hero-lead">SoulSupport is a mobile mental health platform built to bridge the gap between individuals and professional care — making support accessible, personalized, and human.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Project Type</span>
+        <span class="hero-meta-value">Final Year Graduation Project</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Institution</span>
+        <span class="hero-meta-value">Faculty of Science, Alexandria University</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Role</span>
+        <span class="hero-meta-value">UX/UI Design Lead</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Platform</span>
+        <span class="hero-meta-value">iOS & Android (Flutter)</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Duration</span>
+        <span class="hero-meta-value">Academic Year 2024–2025</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav-strip">
+  <div class="nav-strip-inner">
+    <a href="#overview">Overview</a>
+    <a href="#research">Research</a>
+    <a href="#personas">Personas</a>
+    <a href="#ia">Architecture</a>
+    <a href="#design">Design</a>
+    <a href="#testing">Testing</a>
+    <a href="#results">Results</a>
+  </div>
+</nav>
+
+<!-- 1. PROJECT OVERVIEW -->
+<section id="overview">
+  <div class="inner">
+    <div class="section-number">01 — Overview</div>
+    <h2>The problem we set out to solve</h2>
+    <p class="lead">Despite the global recognition of mental health as critical to overall well-being, accessible and personalized care remains elusive for the majority. We asked: what does a digital system look like that genuinely meets people where they are?</p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">264M</div>
+        <div class="stat-label">people worldwide affected by depression (WHO)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">1 in 13</div>
+        <div class="stat-label">individuals experience anxiety disorders globally</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">89.1%</div>
+        <div class="stat-label">of our survey respondents had never used a mental health app</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">76.1%</div>
+        <div class="stat-label">preferred self-assessment before seeing a professional</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-accent" style="background: var(--rose-100);">⚠</div>
+        <h3>The gap</h3>
+        <p>High costs, professional shortages, long wait times, and geographic barriers leave millions without the mental health support they need.</p>
+      </div>
+      <div class="card">
+        <div class="card-accent" style="background: var(--amber-100);">🔍</div>
+        <h3>The shortfall</h3>
+        <p>Existing apps like Headspace, Calm, and Mindspa each cover only a slice of user needs — none offer a truly comprehensive, AI-driven, therapist-connected platform.</p>
+      </div>
+      <div class="card">
+        <div class="card-accent" style="background: var(--teal-50);">✦</div>
+        <h3>Our answer</h3>
+        <p>SoulSupport — a holistic mobile system combining AI assistance, real therapist booking, mood tracking, guided exercises, and mental health resources in one place.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Design goals</h3>
+    <ul class="checklist">
+      <li><span class="check-icon"></span>Make mental health support geographically and financially accessible to underserved users</li>
+      <li><span class="check-icon"></span>Deliver AI-personalized plans based on individual wellbeing assessments</li>
+      <li><span class="check-icon"></span>Connect patients directly with verified, bookable therapists</li>
+      <li><span class="check-icon"></span>Reduce stigma through private journaling, a compassionate chatbot, and community features</li>
+      <li><span class="check-icon"></span>Protect sensitive user data with encryption and GDPR/HIPAA-aligned practices</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 2. RESEARCH -->
+<section id="research">
+  <div class="inner">
+    <div class="section-number">02 — Research & Discovery</div>
+    <h2>Understanding the user before writing a single pixel</h2>
+    <p class="lead">We conducted a mixed-method research phase — a professional interview with a licensed psychotherapist and a quantitative questionnaire targeting a diverse demographic.</p>
+
+    <h3 style="margin-bottom: 1rem;">Expert interview insights</h3>
+    <blockquote>
+      <p>"Offline sessions are more effective for diagnosis — body language, facial expressions, and environmental tools are irreplaceable. But online sessions are a breakthrough in accessibility. Reach patients anywhere in the world, at any time."</p>
+      <cite>— Dr. Mohamed Shokrey AboelSadat, Cognitive Behavioral Therapist</cite>
+    </blockquote>
+
+    <p>The interview surfaced three critical design principles: transparent pricing and scheduling, lightweight pre-session tests that supplement (not replace) real interaction, and exercises that must be tailored — never one-size-fits-all.</p>
+
+    <hr class="divider">
+
+    <h3 style="margin-bottom: 1rem;">Survey findings — 46 respondents</h3>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Communication preference</h3>
+        <p>73.9% of respondents prefer face-to-face discussions, but 26.1% are comfortable going fully online — reinforcing the need for a <strong>hybrid model</strong>.</p>
+      </div>
+      <div class="card">
+        <h3>Top mental health challenges</h3>
+        <p>Anxiety, stress, and depression dominated responses. Overthinking, burnout, and insomnia were notable secondary mentions across multiple age groups.</p>
+      </div>
+      <div class="card">
+        <h3>Barriers to app use</h3>
+        <p>Privacy concerns led the list, followed by cost, perceived usefulness, and technical friction. Trust is the foundational currency of this product.</p>
+      </div>
+      <div class="card">
+        <h3>Highest-valued features</h3>
+        <p>Online documentation (95.5%), mood tracking (93.5%), mental health tests (89.1%), and daily exercise plans (89.1%) — all validated by strong supermajorities.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h3 style="margin-bottom: 1rem;">Competitive analysis</h3>
+    <p>We audited 6+ existing solutions. Every competitor had meaningful feature gaps that SoulSupport was designed to address holistically:</p>
+
+    <div style="overflow-x: auto; margin: 1.5rem 0;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 13px; min-width: 580px;">
+        <thead>
+          <tr>
+            <th style="background: var(--teal-800); color: var(--cream); padding: 10px 14px; text-align: left; border-radius: 10px 0 0 0;">App</th>
+            <th style="background: var(--teal-800); color: var(--cream); padding: 10px 14px; text-align: left;">AI-Powered</th>
+            <th style="background: var(--teal-800); color: var(--cream); padding: 10px 14px; text-align: left;">Therapist Directory</th>
+            <th style="background: var(--teal-800); color: var(--cream); padding: 10px 14px; text-align: left;">Mood Logging</th>
+            <th style="background: var(--teal-800); color: var(--cream); padding: 10px 14px; text-align: left;">Events</th>
+            <th style="background: var(--teal-800); color: var(--cream); padding: 10px 14px; text-align: left; border-radius: 0 10px 0 0;">Tests</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); font-weight: 500; color: var(--teal-600);">SoulSupport</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); color: #2d7a4a;">✓</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); color: #2d7a4a;">✓</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); color: #2d7a4a;">✓</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); color: #2d7a4a;">✓</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); color: #2d7a4a;">✓</td>
+          </tr>
+          <tr style="background: rgba(0,0,0,0.02);">
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06);">Headspace</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); color: #2d7a4a;">✓</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); color: #2d7a4a;">✓</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); color: #2d7a4a;">✓</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); color: #a03030;">✗</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); color: #a03030;">✗</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06);">Calm</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); color: #a03030;">✗</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); color: #2d7a4a;">✓</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); color: #2d7a4a;">✓</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); color: #a03030;">✗</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); color: #a03030;">✗</td>
+          </tr>
+          <tr style="background: rgba(0,0,0,0.02);">
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06);">VOS Mental Health</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); color: #2d7a4a;">✓</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); color: #a03030;">✗</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); color: #2d7a4a;">✓</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); color: #a03030;">✗</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); color: #2d7a4a;">✓</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 14px;">Mindspa</td>
+            <td style="padding: 10px 14px; color: #2d7a4a;">✓</td>
+            <td style="padding: 10px 14px; color: #a03030;">✗</td>
+            <td style="padding: 10px 14px; color: #a03030;">✗</td>
+            <td style="padding: 10px 14px; color: #a03030;">✗</td>
+            <td style="padding: 10px 14px; color: #2d7a4a;">✓</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 3. PERSONAS -->
+<section id="personas">
+  <div class="inner">
+    <div class="section-number">03 — User Personas</div>
+    <h2>Who we are designing for</h2>
+    <p class="lead">Two primary personas emerged from our research, representing the core user spectrum — the student in academic crisis and the professional managing chronic stress.</p>
+
+    <div class="personas">
+      <div class="persona-card persona-teal">
+        <div class="persona-avatar">S</div>
+        <h3>Sara, 21</h3>
+        <p class="persona-role">University Student · Alexandria</p>
+        <ul class="persona-list">
+          <li>Experiencing academic burnout, social anxiety, and sleep disruption ahead of final exams</li>
+          <li>Uncomfortable discussing mental health openly due to cultural stigma at home</li>
+          <li>Wants a private, non-judgmental space to track mood and access self-care tools</li>
+          <li>Can't afford private therapy — needs free or affordable initial support</li>
+          <li>Goal: understand what she's feeling and know when to seek professional help</li>
+        </ul>
+      </div>
+      <div class="persona-card persona-sky">
+        <div class="persona-avatar">K</div>
+        <h3>Khaled, 34</h3>
+        <p class="persona-role">IT Project Manager · Cairo</p>
+        <ul class="persona-list">
+          <li>High-pressure role with tight deadlines, managing remote teams across time zones</li>
+          <li>Experiences persistent stress and early signs of burnout but dismisses them as "normal"</li>
+          <li>Previously tried a therapist but found scheduling and cost prohibitive long-term</li>
+          <li>Wants data-driven insights into his stress patterns and on-demand support</li>
+          <li>Goal: build sustainable habits and access a therapist when needed, on his schedule</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. INFORMATION ARCHITECTURE -->
+<section id="ia">
+  <div class="inner">
+    <div class="section-number">04 — Ideation & Architecture</div>
+    <h2>Mapping the emotional journey and system logic</h2>
+    <p class="lead">Before wireframes, we mapped the user's emotional arc and the branching logic that separates a routine daily check-in from an urgent de-escalation path.</p>
+
+    <h3 style="margin-bottom: 1rem;">User journey map</h3>
+
+    <div class="journey">
+      <table class="journey-table">
+        <thead>
+          <tr>
+            <th>Stage</th>
+            <th>User emotion</th>
+            <th>Action</th>
+            <th>System response</th>
+            <th>Design opportunity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="stage-badge badge-red">Peak distress</span></td>
+            <td>Overwhelmed, anxious, confused</td>
+            <td>Opens app seeking immediate help</td>
+            <td>SoulMate chatbot is front-and-center, immediately accessible</td>
+            <td>Reduce friction to zero — one tap to start talking</td>
+          </tr>
+          <tr>
+            <td><span class="stage-badge badge-amber">Exploring</span></td>
+            <td>Uncertain, cautious</td>
+            <td>Takes the wellbeing self-assessment</td>
+            <td>AI analyzes responses, suggests whether professional help is needed</td>
+            <td>Frame results compassionately, never alarming</td>
+          </tr>
+          <tr>
+            <td><span class="stage-badge badge-amber">Seeking help</span></td>
+            <td>Hopeful but nervous</td>
+            <td>Browses therapist directory, books a session</td>
+            <td>Clear availability, ratings, transparent pricing, one-tap booking</td>
+            <td>Trust signals — verified badges, reviews, video previews</td>
+          </tr>
+          <tr>
+            <td><span class="stage-badge badge-sage">Building habit</span></td>
+            <td>Gradually more regulated</td>
+            <td>Logs mood daily, follows personalized plan</td>
+            <td>Reminders, streak encouragement, progress visualizations</td>
+            <td>Celebrate small wins — micro-rewards for consistency</td>
+          </tr>
+          <tr>
+            <td><span class="stage-badge badge-teal">Resolved</span></td>
+            <td>Calm, capable, aware</td>
+            <td>Reviews progress, continues independently or with therapist</td>
+            <td>Detailed mood history, AI insights, community participation</td>
+            <td>Shift from reactive to proactive mental health maintenance</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="divider">
+
+    <h3 style="margin-bottom: 1.25rem;">Dual app flow logic</h3>
+
+    <div class="flow-wrap">
+      <div class="flow-title">Primary navigation paths</div>
+      <div class="flow-cols">
+        <div>
+          <div class="flow-col-title">Emergency / De-escalation Path</div>
+          <div class="flow-step">Sign in</div>
+          <div class="flow-step">Home screen loads</div>
+          <div class="flow-step">Tap "Talk to SoulMate" (1-touch)</div>
+          <div class="flow-step">Chatbot greets + asks how you feel</div>
+          <div class="flow-step">AI assesses urgency</div>
+          <div class="flow-step">Offers: breathing exercises, grounding, or connects to available therapist</div>
+          <div class="flow-step flow-step-end">Crisis resolved or session booked</div>
+        </div>
+        <div class="flow-col-divider"></div>
+        <div>
+          <div class="flow-col-title">Daily Check-in Path</div>
+          <div class="flow-step">Sign in</div>
+          <div class="flow-step">Notification: "How are you feeling today?"</div>
+          <div class="flow-step">Tap mood tracker (+)</div>
+          <div class="flow-step">Select emoji + optional note</div>
+          <div class="flow-step">View mood history & AI pattern insight</div>
+          <div class="flow-step">Follow today's plan activity (meditation, journaling, or exercise)</div>
+          <div class="flow-step flow-step-end">Progress logged, streak maintained</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;">Feature scope prioritization</h3>
+    <div class="cards">
+      <div class="card">
+        <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--teal-600); margin-bottom: 0.75rem; font-weight: 500;">High priority</div>
+        <p style="font-size: 13px; color: var(--ink-soft);">Online therapy sessions, wellbeing tests, mood tracking, mental health resources, personalized AI plan</p>
+      </div>
+      <div class="card">
+        <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--amber-400); margin-bottom: 0.75rem; font-weight: 500;">Medium priority</div>
+        <p style="font-size: 13px; color: var(--ink-soft);">Conversational AI (SoulMate), therapist chat, community discussion, events calendar</p>
+      </div>
+      <div class="card">
+        <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-muted); margin-bottom: 0.75rem; font-weight: 500;">Low priority</div>
+        <p style="font-size: 13px; color: var(--ink-soft);">Self-care reminders, gamification badges, VR sessions (future roadmap)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. DESIGN -->
+<section id="design">
+  <div class="inner">
+    <div class="section-number">05 — Design Execution</div>
+    <h2>From wireframes to a visual language of trust</h2>
+    <p class="lead">The visual identity had one mandate: safety. Every color, type choice, and spatial decision was evaluated against a single question — does this feel like a sanctuary?</p>
+
+    <h3 style="margin-bottom: 1.25rem;">Visual identity — color system</h3>
+
+    <div class="palette">
+      <div class="swatch">
+        <div class="swatch-color" style="background: #01709A;"></div>
+        <div class="swatch-name">Oceanic Blue</div>
+        <div class="swatch-hex">#01709A</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #2f6d99;"></div>
+        <div class="swatch-name">Steel Blue</div>
+        <div class="swatch-hex">#2f6d99</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #97CADB;"></div>
+        <div class="swatch-name">Sky Blue</div>
+        <div class="swatch-hex">#97CADB</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #A1C0DC;"></div>
+        <div class="swatch-name">Powder Blue</div>
+        <div class="swatch-hex">#A1C0DC</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #e8f5f0;"></div>
+        <div class="swatch-name">Dewdrop</div>
+        <div class="swatch-hex">#e8f5f0</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #f5e8cc;"></div>
+        <div class="swatch-name">Champagne</div>
+        <div class="swatch-hex">#f5e8cc</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #f5dde0;"></div>
+        <div class="swatch-name">Dusty Rose</div>
+        <div class="swatch-hex">#f5dde0</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #f9f6f1; border: 1px solid rgba(0,0,0,0.08);"></div>
+        <div class="swatch-name">Ivory</div>
+        <div class="swatch-hex">#f9f6f1</div>
+      </div>
+    </div>
+
+    <p><strong>Rationale:</strong> Deep teals communicate calm, safety, and professionalism — the anchors of clinical trust. Warm cream backgrounds reduce clinical sterility. Amber and rose accents signal warmth without urgency. The palette deliberately avoids the generic purple-gradient approach common in wellness apps.</p>
+
+    <hr class="divider">
+
+    <h3 style="margin-bottom: 1.25rem;">Typography system</h3>
+
+    <div class="typo-spec">
+      <div class="typo-row">
+        <div class="typo-role">Display / Hero</div>
+        <div style="font-family: 'DM Serif Display', serif; font-size: 2rem; line-height: 1.1; color: var(--ink);">Healing starts here</div>
+        <div class="typo-spec-text">DM Serif Display, 32px, italic available</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-role">Section heading</div>
+        <div style="font-family: 'DM Serif Display', serif; font-size: 1.4rem; line-height: 1.2; color: var(--ink);">How are you feeling?</div>
+        <div class="typo-spec-text">DM Serif Display, 22px</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-role">UI / Body</div>
+        <div style="font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--ink-soft);">Your mood has been tracked successfully. Check your weekly report.</div>
+        <div class="typo-spec-text">DM Sans, 15px, weight 400</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-role">Label / Caption</div>
+        <div style="font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--ink-muted); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Mood logged · 3 minutes ago</div>
+        <div class="typo-spec-text">DM Sans, 12px, uppercase, weight 500</div>
+      </div>
+    </div>
+
+    <p>The pairing of DM Serif Display (editorial, warm) with DM Sans (clean, accessible) creates a tone that feels both emotionally warm and medically trustworthy — unusual in a space that tends toward either clinical coldness or saccharine cheerfulness.</p>
+
+    <hr class="divider">
+
+    <h3 style="margin-bottom: 1.25rem;">Key screen mockups</h3>
+
+    <div class="screens-row">
+
+      <!-- Home screen -->
+      <div>
+        <div class="phone-frame s-home">
+          <div class="phone-screen">
+            <div class="phone-statusbar"><div class="phone-notch"></div></div>
+            <div class="phone-content">
+              <div style="font-size: 10px; color: var(--ink-muted); margin-bottom: 2px;">Good morning,</div>
+              <div style="font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--ink); margin-bottom: 12px;">Sara ✦</div>
+              <div class="s-chatbot-btn">
+                <div class="s-chatbot-dot"></div>
+                Talk to SoulMate
+              </div>
+              <div class="s-feature-grid">
+                <div class="s-feature-tile">Therapist<br>Directory</div>
+                <div class="s-feature-tile">Documentations</div>
+                <div class="s-feature-tile" style="background: var(--sage-100); color: #2d5c3a;">Meditations</div>
+                <div class="s-feature-tile" style="background: var(--sky-100); color: #0d4575;">Community</div>
+              </div>
+              <div class="s-test-widget">
+                <div style="font-size: 9px; font-weight: 500; margin-bottom: 3px; color: #2d5c3a;">Take a quick test</div>
+                <div style="font-size: 9px;">Wellbeing Test · Check your anxiety levels</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-label">Home screen</div>
+      </div>
+
+      <!-- Mood tracker -->
+      <div>
+        <div class="phone-frame s-mood">
+          <div class="phone-screen">
+            <div class="phone-statusbar"><div class="phone-notch"></div></div>
+            <div class="phone-content" style="display: flex; flex-direction: column; align-items: center; padding-top: 20px;">
+              <div style="font-family: 'DM Serif Display', serif; font-size: 13px; color: var(--ink); text-align: center; margin-bottom: 4px;">How are we feeling today?</div>
+              <div style="font-size: 9px; color: var(--ink-muted); text-align: center; margin-bottom: 16px;">tap the face to log your mood</div>
+              <div class="s-mood-emoji">😊</div>
+              <div class="s-mood-input">Describe your feeling...</div>
+              <div class="s-mood-save">Save</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-label">Mood tracker</div>
+      </div>
+
+      <!-- Chatbot -->
+      <div>
+        <div class="phone-frame s-chatbot">
+          <div class="phone-screen">
+            <div class="phone-statusbar"><div class="phone-notch"></div></div>
+            <div class="phone-content" style="display: flex; flex-direction: column; gap: 8px; padding-top: 10px;">
+              <div style="font-family: 'DM Serif Display', serif; font-size: 12px; color: var(--ink); margin-bottom: 4px;">Talk to SoulMate</div>
+              <div class="s-chat-bubble s-chat-bot">Hi, I'm here for you. How may I help you today?</div>
+              <div class="s-chat-bubble s-chat-user">I've been feeling anxious about my exams</div>
+              <div class="s-chat-bubble s-chat-bot">I hear you — that sounds really overwhelming. Would you like to try a quick breathing exercise together?</div>
+              <div class="s-chat-input-row" style="margin-top: auto;">
+                <div class="s-chat-input-bar">Send a message...</div>
+                <div class="s-chat-send" style="display: flex; align-items: center; justify-content: center;">
+                  <svg width="10" height="10" viewBox="0 0 10 10"><path d="M1 9L9 5L1 1V4.5L6 5L1 5.5V9Z" fill="white"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-label">SoulMate chatbot</div>
+      </div>
+
+      <!-- Therapist profile -->
+      <div>
+        <div class="phone-frame s-therapist">
+          <div class="phone-screen">
+            <div class="phone-statusbar"><div class="phone-notch"></div></div>
+            <div class="phone-content" style="padding: 0; overflow: visible;">
+              <div class="s-th-header">
+                <div class="s-th-avatar">E</div>
+              </div>
+              <div class="s-th-body">
+                <div class="s-th-name">Dr. Ethar Ayman</div>
+                <div class="s-th-role">Therapist · ★ 4.9 · 200+ sessions</div>
+                <div style="font-size: 10px; color: var(--ink-muted); margin-bottom: 8px;">Mon–Fri, 08:00–15:00</div>
+                <div class="s-slots">
+                  <div class="s-slot">08:00</div>
+                  <div class="s-slot s-slot-active">09:00</div>
+                  <div class="s-slot">10:00</div>
+                  <div class="s-slot">11:00</div>
+                </div>
+                <div class="s-book-btn">Book Appointment</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-label">Therapist profile</div>
+      </div>
+
+      <!-- Wellbeing Tests -->
+      <div>
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="phone-statusbar"><div class="phone-notch"></div></div>
+            <div class="phone-content">
+              <div style="font-family: 'DM Serif Display', serif; font-size: 14px; color: var(--ink); margin-bottom: 4px;">Wellbeing Tests</div>
+              <div style="font-size: 9px; color: var(--ink-muted); margin-bottom: 14px;">Understand your inner self and track your progress</div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                <div style="background: var(--teal-50); border-radius: 10px; padding: 10px; font-size: 9px; color: var(--teal-800);">
+                  <div style="font-size: 7px; color: var(--teal-600); margin-bottom: 3px;">5 min</div>
+                  <div style="font-weight: 500; margin-bottom: 2px;">Satisfaction with Life</div>
+                </div>
+                <div style="background: var(--rose-100); border-radius: 10px; padding: 10px; font-size: 9px; color: #7a2030;">
+                  <div style="font-size: 7px; color: #9a4050; margin-bottom: 3px;">5 min</div>
+                  <div style="font-weight: 500; margin-bottom: 2px;">Anxiety Levels</div>
+                </div>
+                <div style="background: var(--sky-100); border-radius: 10px; padding: 10px; font-size: 9px; color: #0d4575;">
+                  <div style="font-size: 7px; color: #1a5a90; margin-bottom: 3px;">10 min</div>
+                  <div style="font-weight: 500; margin-bottom: 2px;">Depression Scale</div>
+                </div>
+                <div style="background: var(--sage-100); border-radius: 10px; padding: 10px; font-size: 9px; color: #2d5c3a;">
+                  <div style="font-size: 7px; color: #3d7a4a; margin-bottom: 3px;">15 min</div>
+                  <div style="font-weight: 500; margin-bottom: 2px;">Well-being Index</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-label">Wellbeing tests</div>
+      </div>
+
+    </div>
+
+    <p style="font-size: 13px; color: var(--ink-muted); text-align: center; margin-top: 0.5rem;">← Scroll to see all key screens</p>
+
+    <hr class="divider">
+
+    <h3 style="margin-bottom: 1rem;">Wireframe-to-hi-fi rationale — Home screen</h3>
+    <p>The home screen was designed around a single principle: <strong>the most important action must require the fewest taps.</strong> The SoulMate chatbot button dominates the top third — a deliberate break from conventional app grids that bury the most critical feature in navigation. The supporting feature grid uses soft color-coding rather than icons alone, as research showed that abstract icons slow comprehension for first-time users.</p>
+  </div>
+</section>
+
+<!-- 6. TESTING -->
+<section id="testing">
+  <div class="inner">
+    <div class="section-number">06 — Testing & Iteration</div>
+    <h2>What users told us when we got out of the way</h2>
+    <p class="lead">We ran usability sessions focusing on the four core flows — onboarding, mood logging, chatbot interaction, and therapist booking. Here's what we learned and how we responded.</p>
+
+    <h3 style="margin-bottom: 1.25rem;">Key findings</h3>
+
+    <div class="findings">
+      <div class="finding finding-issue">
+        <span class="finding-icon" style="font-size: 1.2rem;">⚡</span>
+        <h3>Onboarding friction</h3>
+        <p>Users were confused about the post-signup "test screen" — many thought the assessment was mandatory and felt pressured, not welcomed.</p>
+      </div>
+      <div class="finding finding-issue">
+        <span class="finding-icon" style="font-size: 1.2rem;">⚡</span>
+        <h3>Chatbot cold start</h3>
+        <p>When SoulMate opened, the blank chat state caused hesitation. Users didn't know what the AI could and couldn't do, creating anxiety rather than relief.</p>
+      </div>
+      <div class="finding finding-issue">
+        <span class="finding-icon" style="font-size: 1.2rem;">⚡</span>
+        <h3>Therapist trust signals</h3>
+        <p>Users wanted to see more before booking — credentials, session format (video/audio), and estimated wait time were frequently requested.</p>
+      </div>
+      <div class="finding finding-insight">
+        <span class="finding-icon" style="font-size: 1.2rem;">◈</span>
+        <h3>Mood emoji resonance</h3>
+        <p>The animated emoji in mood logging had the highest delight score across all sessions. Users felt it "actually understood" them — lean into this.</p>
+      </div>
+      <div class="finding finding-insight">
+        <span class="finding-icon" style="font-size: 1.2rem;">◈</span>
+        <h3>Plan page underused</h3>
+        <p>The personalized plan was buried. Users who discovered it loved it, but most missed it entirely on first sessions — a discoverability failure.</p>
+      </div>
+      <div class="finding finding-fix">
+        <span class="finding-icon" style="font-size: 1.2rem;">✓</span>
+        <h3>Test skippability</h3>
+        <p>Adding "Skip for now" to the initial assessment dramatically improved onboarding completion rate in the second round of testing.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h3 style="margin-bottom: 1.25rem;">Key design iterations</h3>
+
+    <div class="iteration-row">
+      <div class="iter-box iter-before">
+        <h4>Before</h4>
+        Mandatory post-signup assessment with no skip option. Users felt evaluated immediately, creating anxiety at the point of greatest vulnerability.
+      </div>
+      <div class="iter-arrow">→</div>
+      <div class="iter-box iter-after">
+        <h4>After</h4>
+        Assessment framed as "a quick check-in to personalize your experience" with a prominent "Skip for now" option. Completion improved; anxiety signals reduced.
+      </div>
+    </div>
+
+    <div class="iteration-row">
+      <div class="iter-box iter-before">
+        <h4>Before</h4>
+        SoulMate opened to a blank chat screen. Users stared at a blinking cursor with no indication of what to type or what the AI could help with.
+      </div>
+      <div class="iter-arrow">→</div>
+      <div class="iter-box iter-after">
+        <h4>After</h4>
+        Chatbot opens with a warm greeting plus pre-filled prompt chips ("I feel...", "I'm worried about...", "Curious why...") — reducing cognitive load at the moment of distress.
+      </div>
+    </div>
+
+    <div class="iteration-row">
+      <div class="iter-box iter-before">
+        <h4>Before</h4>
+        Therapist cards showed only name, specialty, and a "Book" button. Users reported not trusting professionals they knew nothing about.
+      </div>
+      <div class="iter-arrow">→</div>
+      <div class="iter-box iter-after">
+        <h4>After</h4>
+        Therapist profiles expanded to include verified credentials badge, session count, rating with review count, available formats (video/audio/chat), and a bio section — replicating the trust cues of a clinic visit.
+      </div>
+    </div>
+
+    <div class="iteration-row">
+      <div class="iter-box iter-before">
+        <h4>Before</h4>
+        "My Program" was a tab in the bottom navigation. Most users never discovered it during first sessions; some thought the app didn't have personalized content.
+      </div>
+      <div class="iter-arrow">→</div>
+      <div class="iter-box iter-after">
+        <h4>After</h4>
+        Personalized plan surfaced as a card on the home screen with a progress indicator — "Today's Plan: 2 of 4 activities complete." Engagement with plan content tripled in subsequent testing.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. RESULTS -->
+<section id="results">
+  <div class="inner">
+    <div class="section-number">07 — Results & Impact</div>
+    <h2>What SoulSupport delivers</h2>
+    <p class="lead">The final product is a cohesive mental health ecosystem where patients, therapists, and administrators operate within a single, secure, AI-enhanced platform.</p>
+
+    <div class="impact-stats">
+      <div class="impact-card">
+        <div class="impact-num">12</div>
+        <div class="impact-desc">core features built, covering AI, therapy, self-care, and community</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-num">3</div>
+        <div class="impact-desc">user roles fully designed: patient, therapist, and admin</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-num">93%</div>
+        <div class="impact-desc">of test users found mood tracking "genuinely useful" in round 2</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-num">2</div>
+        <div class="impact-desc">rounds of usability testing, 6 major design iterations</div>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom: 1.25rem;">Final feature set</h3>
+
+    <div class="features-final">
+      <div class="feature-final-card">
+        <div class="feature-num">01</div>
+        <h3>SoulMate AI chatbot</h3>
+        <p>A compassionate conversational AI providing 24/7 emotional support, breathing exercises, and grounding techniques — always one tap away.</p>
+      </div>
+      <div class="feature-final-card">
+        <div class="feature-num">02</div>
+        <h3>Therapist booking</h3>
+        <p>A verified directory with rich profiles, real-time availability, video/audio/chat session options, and integrated payment processing.</p>
+      </div>
+      <div class="feature-final-card">
+        <div class="feature-num">03</div>
+        <h3>Mood tracking</h3>
+        <p>Daily emoji-based mood logging with optional journaling, AI-detected patterns, and progress charts shared (with consent) with connected therapists.</p>
+      </div>
+      <div class="feature-final-card">
+        <div class="feature-num">04</div>
+        <h3>Personalized AI plan</h3>
+        <p>Post-assessment AI-generated wellness programs combining meditation, exercise videos, journaling prompts, and curated resource reading.</p>
+      </div>
+      <div class="feature-final-card">
+        <div class="feature-num">05</div>
+        <h3>Wellbeing assessments</h3>
+        <p>Validated psychometric tests for anxiety, depression, life satisfaction, and self-compassion — framed to empower, never alarm.</p>
+      </div>
+      <div class="feature-final-card">
+        <div class="feature-num">06</div>
+        <h3>Mental health library</h3>
+        <p>Clinically reviewed documentation on mental health conditions, organized alphabetically and updated by the admin team against global statistics.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="reflection">
+      <h3>Designer's reflection</h3>
+      <p>This project taught me that designing for mental health is fundamentally an act of <strong>trust architecture</strong>. Every decision — from the warmth of a color to the phrasing of an error message — either builds or erodes the user's willingness to be vulnerable.</p>
+      <p style="margin-top: 1rem;">The most significant tension we navigated was between <strong>clinical credibility and emotional warmth</strong>. Too sterile and users feel surveilled. Too casual and they don't trust the medical validity. Finding that middle path — a product that feels like a conversation with a wise, caring friend who also happens to be a professional — is the core design challenge of mental health UX.</p>
+      <p style="margin-top: 1rem;">If I were to extend this project, the next frontier is <strong>crisis detection</strong> — using AI to identify linguistic patterns in chat that signal acute distress, and surfacing emergency resources proactively rather than waiting for a user to ask.</p>
+    </div>
+
+    <h3 style="margin-bottom: 1rem;">What I'd do differently</h3>
+    <ul class="checklist">
+      <li><span class="check-icon"></span>Recruit participants with lived mental health experience earlier — student demographics alone don't capture the full user spectrum</li>
+      <li><span class="check-icon"></span>Prototype the AI chatbot interaction earlier in the process — its emotional register requires more testing cycles than static UI</li>
+      <li><span class="check-icon"></span>Co-design sessions with a licensed therapist as a regular design partner, not just an interview subject</li>
+      <li><span class="check-icon"></span>Conduct accessibility audits from the start — mental health users frequently include people with anxiety, ADHD, or dyslexia who are underrepresented in standard UX research</li>
+    </ul>
+  </div>
+</section>
+
+<footer class="footer">
+  <p><strong>SoulSupport</strong> · Final Year Project 2024–2025</p>
+  <p style="margin-top: 0.5rem;">Faculty of Science, Software Industry & Multimedia · Alexandria University</p>
+  <p style="margin-top: 0.5rem; font-size: 11px;">Supervised by Dr. Rasha Montaser · Team: Abrar Ayman, Ahmed Haytham, Anas Tarek, Menna Hussein, Rana Alaa, Sama Mohamed</p>
+</footer>
+
+</body>
+</html>
